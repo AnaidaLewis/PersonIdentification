@@ -16,3 +16,47 @@ admin.site.register(token_blacklist.models.OutstandingToken, OutstandingTokenAdm
 
 
 User = get_user_model()
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = [
+                    'id',
+                    'email',
+                    'firstname',    
+                    'lastname',     
+                    'blood',        
+                    'DOB',          
+                    'is_active',    
+                    'staff',        
+                    'admin',        
+                    'auth_provider',
+                    ]
+    list_display_links = [
+                    'id',
+                    'email',
+                    'firstname',    
+                    'lastname',
+    ]
+    list_editable = [
+                    'is_active',    
+                    'staff',        
+                    'admin',
+                    ]
+    list_filter = [
+                    'is_active',    
+                    'staff',        
+                    'admin',        
+                    'auth_provider',
+                    ]
+    search_fields = [
+                    'id',
+                    'email',
+                    'firstname',    
+                    'lastname',     
+                    'blood',        
+                    'DOB',          
+                    'is_active',    
+                    'staff',        
+                    'admin',        
+                    'auth_provider',
+                    ]
+

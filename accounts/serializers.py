@@ -22,7 +22,7 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['email', 'password', 'firstname', 'lastname','phone_number','gender','DOB']
+        fields = ['email', 'password', 'firstname', 'lastname','blood','DOB']
        
     def save_user(self, validated_data):
         user = User.objects.create_user( 
@@ -30,8 +30,7 @@ class UserSerializer(serializers.ModelSerializer):
                                 email=validated_data.get('email'),
                                 firstname=validated_data.get('firstname'),
                                 lastname=validated_data.get('lastname'),
-                                phone_number=validated_data.get('phone_number'),
-                                gender=validated_data.get('gender'),
+                                blood=validated_data.get('blood'),
                                 DOB=validated_data.get('DOB')
                                 )
         user.save()
