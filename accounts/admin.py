@@ -1,0 +1,18 @@
+from django.contrib import admin
+
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
+# Register your models here.
+
+from rest_framework_simplejwt import token_blacklist
+
+class OutstandingTokenAdmin(token_blacklist.admin.OutstandingTokenAdmin):
+
+    def has_delete_permission(self, *args, **kwargs):
+        return True # or whatever logic you want
+
+admin.site.unregister(token_blacklist.models.OutstandingToken)
+admin.site.register(token_blacklist.models.OutstandingToken, OutstandingTokenAdmin)
+
+
+User = get_user_model()
