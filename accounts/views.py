@@ -23,7 +23,7 @@ import os
 # Create your views here.
 
 from .utils import Util
-from .serializers import UserSerializer, EmailVerificationSerializer, LoginSerializer, ResetPasswordEmailRequestSerializer, SetNewPasswordSerializer, LogoutSerializer
+from .serializers import UserSerializer, EmailVerificationSerializer, LoginSerializer,LogoutSerializer
 
 User = get_user_model()
 
