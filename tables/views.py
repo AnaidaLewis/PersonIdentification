@@ -83,7 +83,7 @@ class AddressView(APIView):
         except Aadhar.DoesNotExist:
             content = {'detail': 'Created your Aadhar first!'}
             return JsonResponse(content, status = status.HTTP_404_NOT_FOUND)
-        if pk == '0':
+        if pk == 0:
             address = Address.objects.filter(user=aadhar)
         else:
             try:
@@ -137,10 +137,12 @@ class AddressView(APIView):
             address = Address.objects.get(id=pk)
         except Address.DoesNotExist:
             content = {'detail': 'No such Address'}
+            return JsonResponse(content, status = status.HTTP_404_NOT_FOUND)
         try:
             address = Address.objects.get(id=pk,user=aadhar)
         except Address.DoesNotExist:
             content = {'detail': 'No such Address of this user'}
+            return JsonResponse(content, status = status.HTTP_404_NOT_FOUND)
         serializer = AddressSerializer(instance = address, data=request.data, partial = True)
         if serializer.is_valid():
             serializer.save()
@@ -188,7 +190,7 @@ class QualificationView(APIView):
         except Aadhar.DoesNotExist:
             content = {'detail': 'Created your Aadhar first!'}
             return JsonResponse(content, status = status.HTTP_404_NOT_FOUND)
-        if pk == '0':
+        if pk == 0:
             qualification = Qualification.objects.filter(user=aadhar)
         else:
             try:
@@ -290,7 +292,7 @@ class BankView(APIView):
         except Aadhar.DoesNotExist:
             content = {'detail': 'Created your Aadhar first!'}
             return JsonResponse(content, status = status.HTTP_404_NOT_FOUND)
-        if pk == '0':
+        if pk == 0:
             bank = Bank.objects.filter(user=aadhar)
         else:
             try:
@@ -394,7 +396,7 @@ class PersonalDetailsView(APIView):
         except Aadhar.DoesNotExist:
             content = {'detail': 'Created your Aadhar first!'}
             return JsonResponse(content, status = status.HTTP_404_NOT_FOUND)
-        if pk == '0':
+        if pk == 0:
             bank = PersonalDetails.objects.filter(user=aadhar)
         else:
             try:
@@ -498,7 +500,7 @@ class PastJobExperienceView(APIView):
         except Aadhar.DoesNotExist:
             content = {'detail': 'Created your Aadhar first!'}
             return JsonResponse(content, status = status.HTTP_404_NOT_FOUND)
-        if pk == '0':
+        if pk == 0:
             bank = PastJobExperience.objects.filter(user=aadhar)
         else:
             try:
