@@ -9,4 +9,5 @@ urlpatterns = [
     path('bank/<int:pk>/', views.BankView.as_view(), name="Bank"),
     path('personal-details/<int:pk>/', views.PersonalDetailsView.as_view(), name="Personal-details"),
     path('past-job-experience/<int:pk>/', views.PastJobExperienceView.as_view(), name="Past-job-experience"),
+    path('list',views.FilteringView.as_view(),name='Order&Filter&Search'),
 ]

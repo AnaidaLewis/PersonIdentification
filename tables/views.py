@@ -1,6 +1,8 @@
 from django.http import JsonResponse
 import requests
 from rest_framework import generics
+from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import api_view, permission_classes
 from .serializers import AadharSerializer,AddressSerializer,QualificationSerializer,BankSerializer,PersonalDetailsSerializer,PastJobExperienceSerializer
 from rest_framework.views import APIView
@@ -587,3 +589,30 @@ class PastJobExperienceView(APIView):
             content = {'detail': 'No such  PastJobExperience of this user'}
         bank.delete()
         return JsonResponse({'Response': 'PastJobExperience succsesfully delete!'},status = status.HTTP_200_OK)
+
+
+class FilteringView(generics.ListAPIView):
+    serializer_class = AadharSerializer
+    queryset = Aadhar.objects.all()
+    permission_classes = [IsAuthenticated]
+    filter_backends = [DjangoFilterBackend,
+                       filters.SearchFilter, filters.OrderingFilter]
+
+    filterset_fields = ['user',
+                        'aadhar_number',
+                        'active',
+                        ]
+    ordering_fields = [
+                        'user__firstname',
+                        'user__lastname',
+                        'user__email',
+                        'aadhar_number',
+                        'active',
+                        ]
+    search_fields = [
+                    'aadhar_number',
+                    'active',
+                    'user__firstname',
+                    'user__lastname',
+                    'user__email',
+                    ]

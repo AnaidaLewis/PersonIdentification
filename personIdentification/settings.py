@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     #REST, CORS & SWAGGER API DOCS
     'rest_framework',
+    'django_filters',
     # 'corsheaders',
     'drf_yasg',
     'rest_framework_simplejwt',
